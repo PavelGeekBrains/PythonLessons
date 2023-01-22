@@ -1,20 +1,97 @@
-# This is a sample Python script.
+# 1. **Написать программу для работы пользователя со списком.**
+#
+# Пользовательский интерфейс должен представлять из себя консольное меню из четырех пунктов:
+#
+# 1 - Демонстрация списка
+# 2 - Добавление элемента в конец списка
+# 3 - Удаление последнего элемента из списка
+# 4 - Выход
+#
+# Программа ожидает ввод от пользователя числа от 1 до 4 для перехода
+# к соответствующему действию. Реагировать на ввод любых других чисел программа не должна.
+# При переходе к каждому из действий пункты меню стираются. Изначально список пуст.
+#
+# ### Дополнительные материалы:
+#
+# 1. **ДЗ+**
+# К вышеописанному ТЗ добавить пункт меню, осуществляющий сортировку массива,
+# а также добавить ко 2 и 3 пунктам возможность добавлять(удалять) элемент по индексу,
+# отдельно запрашиваемому у пользователя в соотв. подменю.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+import os
+
+def cls():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import random
 
+def list_1(n=10, min=5, max=20):
+    list_nums = [random.randint(min, max)]
+    for i in range (1, n):
+        list_nums.append(random.randint(min, max))
+    return list_nums
+my_list = list_1(7, 5, 20)
+# print(my_list)
+def choice_todo():
+    # import os
+    # clear = lambda: os.system('cls')
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    print("Доступные операции со списком:\n\
+    1 - Демонстрация списка;\n\
+    2 - Сортировка массива;\n\
+    3 - Добавление элемента в список;\n\
+    4 - Удаление элемента из списка;\n\
+    5 - Выход.")
 
-# Local changes
+    ch = input("Введите цифру: ")
 
-# Remote changes
+    # Демонстрация списка
+    if ch == '1':
+        cls()
+        print(my_list)
+        return choice_todo()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # Сортировка массива
+    elif ch == '2':
+        cls()
+        print(f'Исходный массив: {my_list}')
+        print()
+        my_list.sort()
+        print(f'Отсортированный массив: {my_list}')
+        return choice_todo()
+
+    # Добавление элемента в список
+    elif ch == '3':
+        cls()
+        print(f'Исходный массив: {my_list}')
+        num = int(input('Ведите индекс массива:   '))
+        number = int(input('Введите значение массива:  '))
+        my_list.insert(num, number)
+        print(f'Новый массив: {my_list}')
+        return choice_todo()
+
+    # Удаление элемента из списка
+    elif ch == "4":
+        cls()
+        print(f'Исходный массив: {my_list}')
+        num = int(input('Введите индекс массива для удаления:   '))
+        my_list.pop(num)
+        print(f'Новый массив: {my_list}')
+        return choice_todo()
+
+    # выход
+    elif ch == "5":
+        cls()
+        print('Выход...')
+        exit()
+
+    # проверка
+    else:
+        print("Неверная команда, попробуйте снова >>>>  ")
+        print()
+        return choice_todo()
+
+choice_todo()
+
