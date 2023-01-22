@@ -1,20 +1,41 @@
-# This is a sample Python script.
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+#
+# a = int(input("Input a number: "))
+# print("My number is", a)
+
+# if a > 0 and a % 2 == 0:
+#     print('first version')
+# elif a < 0:
+#     print('second version')
+# else:
+#     print('third version')
+#
+# counter = 0
+# while a > 0:
+#     a = a - 5
+#     counter += 1
+#
+# print(counter)
+
+#
+# for item in range(5, 10, 2):
+#     print(item)
+
+#
+# def printColumn(array):
+#     for item in array:
+#         print(item)
+#
+#
+#
+# numbers = [3.12, 6.54, 7.65]
+# printColumn(numbers)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from random import *
+
+a = randint(1, 10)
+b = round(random(), 5)
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# Local changes
-
-# Remote changes
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+print(a,b, choice(['Yes','No']))
