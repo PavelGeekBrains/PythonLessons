@@ -17,52 +17,90 @@
         ко 2 и 3 пунктам возможность добавлять(удалять) элемент по индексу, отдельно запрашиваемому у
         пользователя в соотв. подменю.
 '''
-
 import os
-from termcolor import colored, cprint
+from termcolor import cprint
 
 def cls():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def help():
-    cls()
+    cls() # Очищаем консоль
     print('1 - Демонстрация списка',
           '2 - Добавление элемента в конец списка',
           '3 - Удаление последнего элемента из списка',
-          '4 - Выход', sep='\n')
+          '4 - Сортировка списка',
+          '5 - Выход', sep='\n')
 
-print('Программа взаимодействия со списком.')
-cls()   # Очищаем консоль
-help()
 work_list = []  # Список
+help()
 
 while True:
-    num = int(input("Введите число (1...4): "))
+    try:
+        num = int(input("\nВведите число (1...5): "))
+    except ValueError:
+        cprint('Нужно было ввести число!', 'black', 'on_red')
+        continue
+
     if num == 1:
         cls()
         cprint('1 - Демонстрация списка', 'red', 'on_blue')
         print('2 - Добавление элемента в конец списка',
               '3 - Удаление последнего элемента из списка',
-              '4 - Выход', sep='\n')
+              '4 - Сортировка списка',
+              '5 - Выход', sep='\n')
 
-        print(work_list)
+        cprint('Наш список: ', 'black', 'on_light_yellow', end='')
+        cprint(work_list, 'black', 'on_light_yellow', end=', ')
     elif num == 2:
         cls()
-        print('''
-        
-        2 - Добавление элемента в конец списка
-        
-        
-        ''')
-        work_list.append(input('Введите новый элемент списка: '))
+        print('1 - Демонстрация списка')
+        cprint('2 - Добавление элемента в конец списка', 'red', 'on_blue')
+        print('3 - Удаление последнего элемента из списка')
+        print('4 - Сортировка списка')
+        print('5 - Выход')
+
+#        cprint('\nВведите новый элемент списка: ', 'yellow', end=' ')
+#        work_list.append(input())
+        cprint('\nВведите индекс нового элемента списка: ', 'yellow', end=' ')
+        try:
+            idx = int(input())
+        except ValueError:
+            cprint('Нужно было ввести число!', 'black',  'on_red')
+        else:
+            cprint('Введите новый элемент списка: ', 'green', end=' ')
+            item = input()
+            work_list.insert(idx, item)
+            help()
+
+
     elif num == 3:
         cls()
-        print('3 - Удаление последнего элемента из списка')
+        print('1 - Демонстрация списка')
+        print('2 - Добавление элемента в конец списка')
+        cprint('3 - Удаление последнего элемента из списка', 'red', 'on_blue')
+        print('4 - Сортировка списка')
+        print('5 - Выход')
+
+#        work_list.pop()
+        cprint('\nВведите индекс удаляемого элемента: ', 'yellow', end=' ')
+        try:
+            idx = int(input())
+        except ValueError:
+            cprint('Нужно было ввести число!', 'black', 'on_red')
+        else:
+            if idx < len(work_list):
+                work_list.pop(idx)
+            else:
+                work_list.pop(len(work_list)-1)
+            help()
     elif num == 4:
-        cls()
-        print('4 - Выход')
+        work_list.sort()
+        cprint('Список после сортировки: ', 'black', 'on_light_yellow', end='')
+        cprint(work_list, 'black', 'on_light_yellow', end=', ')
+    elif num == 5:
+        break
     else:
-        pass
+        help()
 
 
 #
